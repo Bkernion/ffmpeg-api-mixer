@@ -52,7 +52,7 @@ app.post('/mix', async (req, res) => {
     const duration = parseFloat(execSync(probeCmd).toString().trim());
 
     const ffmpegCommand = `
-      ffmpeg -y -i "${videoPath}" -stream_loop -1 -i "${musicPath}" -filter_complex "[1:a]volume=0.10[a1];[0:a][a1]amix=inputs=2:duration=first[aout]" -map 0:v -map "[aout]" -c:v copy -c:a aac -t ${duration} "${outputPath}"
+      ffmpeg -y -i "${videoPath}" -stream_loop -1 -i "${musicPath}" -filter_complex "[1:a]volume=0.07[a1];[0:a][a1]amix=inputs=2:duration=first[aout]" -map 0:v -map "[aout]" -c:v copy -c:a aac -t ${duration} "${outputPath}"
     `;
 
     exec(ffmpegCommand, (error, stdout, stderr) => {
